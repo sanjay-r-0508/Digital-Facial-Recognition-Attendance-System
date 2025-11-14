@@ -17,16 +17,16 @@
 
 ```mermaid
 flowchart LR
-    subgraph Client Browser
+    subgraph Client_Browser
         UI[Forms & JS calls]
     end
-    subgraph Flask Server (app.py)
+    subgraph Flask_Server_app_py
         Routes[/Routes & Controllers/]
         DB[(SQLite: students & attendance)]
-        Dataset[((dataset/<student>/images))]
+        Dataset[(dataset/\<student\>/images)]
         Status[[train_status.json]]
     end
-    subgraph ML (model.py)
+    subgraph ML_model_py
         Embed[Face detection + embedding]
         RF[RandomForest model.pkl]
     end
@@ -85,4 +85,3 @@ flowchart LR
 - Avoid overwriting `train_status.json` if training is mid-flight; gate writes carefully.
 - For production, run Flask via WSGI (Gunicorn/uWSGI), disable debug, and move training to a task queue (Celery/RQ).
 - Harden DB operations (transactions, error handling) and consider migrating to a more scalable DB if concurrency grows.
-
